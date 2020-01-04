@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <title>GGJ 2015!</title>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+    <meta name='viewport' content='width=device-width,initial-scale=1.0'>
+    
+    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+    <style>
+        #box {
+            position: absolute;
+            left: -3000px;
+            top: -3030px;
+            width: 150px;
+            height: 150px;
+            border: solid 1px #444444;
+            border-radius: 3px;
+        }
+            #box > div {
+                color: white;
+            }
+            #box .title {
+                background-color: grey;
+            }
+            #box .selec {
+                cursor: pointer;
+                border-bottom: solid 1px #444444;
+            }
+            #box .selec:before {
+                content: "> ";
+            }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="title">どの言葉をかける？</div>
+        <div class="selec">ありがとう</div>
+        <div class="selec">好きだ！</div>
+        <div class="selec">死ね！</div>
+        <div class="selec">きらいだ！</div>
+    </div>
+    <script src="lib/jquery-2.1.3.min.js"></script>
+    <script src="lib/pixi.js"></script>
+    <script src="src/function.js"></script>
+    <script src="src/ggj2015.js"></script>
+</body>
+</html>
