@@ -1,25 +1,26 @@
 
-var GAME = GAME || {};
+const GAME = window.GAME || {};
+window.GAME = GAME;
 GAME.width = 0;
 GAME.height = 0;
 GAME.originalheight = 480;
 GAME.aspect = 0;
 GAME.phase = 0;
 
-loader = new PIXI.AssetLoader([
+let loader = new PIXI.AssetLoader([
     "img/riaju.png",
     "img/huryo.png"
 ]);
 
 resize();
 
-var stage = new PIXI.Stage(0x3f3f3f, true);
+let stage = new PIXI.Stage(0x3f3f3f, true);
 
-var renderer = new PIXI.autoDetectRenderer(GAME.width, GAME.height);
+let renderer = new PIXI.autoDetectRenderer(GAME.width, GAME.height);
 renderer.view.style.display = "block";
 renderer.view.id = "des";
 
-var addEvent = window.addEventListener ?
+let addEvent = window.addEventListener ?
 	function(element, type, func){ element.addEventListener(type, func, false); } :
 	function(element, type, func){ element.attachEvent("on"+type, func); };
 	
@@ -54,14 +55,14 @@ loader.onComplete = function(){
     stage.addChild(GAME.enemy.sprite);
     
     GAME.bullet_text = [];
-    for (var i=0; i<10; i++) {
+    for (let i=0; i<10; i++) {
         GAME.bullet_text[i] = new PIXI.Text("", {fill:"white"});
         GAME.bullet_text[i].anchor.x = GAME.bullet_text[i].anchor.y = 0.5;
         stage.addChild(GAME.bullet_text[i]);
     }
     
     GAME.shield_text = [];
-    for (var i=0; i<2; i++) {
+    for (let i=0; i<2; i++) {
         GAME.shield_text[i] = new PIXI.Text("", {fill:"white"});
         GAME.shield_text[i].anchor.x = GAME.shield_text[i].anchor.y = 0.5;
         stage.addChild(GAME.shield_text[i]);
@@ -84,13 +85,13 @@ document.body.appendChild(renderer.view);
 
 function resize(){
 
-    var newwidth  = window.innerWidth  || document.body.clientWidth;
-    var newheight = window.innerHeight || document.body.clientHeight;
+    let newwidth  = window.innerWidth  || document.body.clientWidth;
+    let newheight = window.innerHeight || document.body.clientHeight;
 
     GAME.width = newwidth;
     GAME.height = newheight;
 
-    var aspect = newheight/GAME.originalheight;
+    let aspect = newheight/GAME.originalheight;
     GAME.aspect = aspect;
     
     $("#box").css({
@@ -115,11 +116,11 @@ window.addEventListener('resize', resize);
 
 window.onorientationchange = resize;
 
-var startmenu_phase = function(){
+let startmenu_phase = function(){
     
 };
 
-var startgame_phase = function(){
+let startgame_phase = function(){
     renderer.render(stage);
     if (GAME.phase === "startgame_phase") {
         requestAnimFrame(startgame_phase);
@@ -133,9 +134,9 @@ var startgame_phase = function(){
     GAME.enemy.sprite.x = GAME.width - GAME.enemy.sprite.width - (GAME.aspect * 25);
     
     stage.mousedown = stage.touchstart = function(){
-        var index = GAME.selected_text_index;
-        var next_bullet = -1;
-        for (var i=0; i<GAME.bullet_text.length; i++) {
+        let index = GAME.selected_text_index;
+        let next_bullet = -1;
+        for (let i=0; i<GAME.bullet_text.length; i++) {
             if (GAME.bullet_text[i].x >= GAME.width) {
                 next_bullet = i;
                 break;
@@ -145,8 +146,8 @@ var startgame_phase = function(){
         if (next_bullet === -1) { return; }
         if (GAME.selected_text.length <= index ) { return; }
         GAME.bullet_text[next_bullet].setText(GAME.selected_text[index]);
-        var x = GAME.player.sprite.x;
-        var y = GAME.player.sprite.y;
+        let x = GAME.player.sprite.x;
+        let y = GAME.player.sprite.y;
         GAME.bullet_text[next_bullet].x = x + GAME.player.sprite.width/2;
         GAME.bullet_text[next_bullet].y = y + GAME.player.sprite.height/2;
         GAME.bullet_text[next_bullet].visible = true;
@@ -155,7 +156,7 @@ var startgame_phase = function(){
     };
 };
 
-var game_phase = function(){
+let game_phase = function(){
     renderer.render(stage);
     requestAnimFrame(game_phase);
 
@@ -196,7 +197,7 @@ var game_phase = function(){
                 elem.visible = false;
             }
             
-            for (var i=0; i<GAME.shield_text.length; i++) {
+            for (let i=0; i<GAME.shield_text.length; i++) {
                 if (!!!GAME.shield_text[i].visible) { continue; }
                 if (GAME.shield_text[i].x- GAME.shield_text[i].width/2 < (elem.x+elem.width/2)
                 && GAME.shield_text[i].x + GAME.shield_text[i].width/2 > (elem.x-elem.width/2)
@@ -209,22 +210,22 @@ var game_phase = function(){
     });
 
     if (~~(Math.random()*100) === 5) {
-        var a = "死ね！".split('').join("\n");
-        var sl = ~~(Math.random()*2)==0? 0 : 1;
+        let a = "死ね！".split('').join("\n");
+        let sl = ~~(Math.random()*2)==0? 0 : 1;
         if (GAME.shield_text[sl].life < 0) {
             GAME.shield_text[sl].setText(a);
             GAME.shield_text[sl].life = 100;
             
-            var m = 50 + ~~(Math.random()*10)-5;
+            let m = 50 + ~~(Math.random()*10)-5;
             GAME.shield_text[sl].x = GAME.enemy.sprite.x - (m*GAME.aspect);
             GAME.shield_text[sl].y = GAME.enemy.sprite.y + GAME.enemy.sprite.height/2;
         }
     }
 
-    var player_move = (Math.sin(GAME.time/50) * (GAME.height/2 - GAME.player.sprite.height/2)) + GAME.height/2 - GAME.player.sprite.height/2;
+    let player_move = (Math.sin(GAME.time/50) * (GAME.height/2 - GAME.player.sprite.height/2)) + GAME.height/2 - GAME.player.sprite.height/2;
     GAME.player.sprite.y = player_move;
     
-    var enemy_move = (Math.cos(GAME.time/70) * (GAME.height/2 - GAME.enemy.sprite.height/2)) + GAME.height/2 - GAME.enemy.sprite.height/2;
+    let enemy_move = (Math.cos(GAME.time/70) * (GAME.height/2 - GAME.enemy.sprite.height/2)) + GAME.height/2 - GAME.enemy.sprite.height/2;
     GAME.enemy.sprite.y = enemy_move;
 };
 

@@ -4,14 +4,16 @@
   "description": "yankee go home",
   "main": "server.js",
   "repository": {
-    "type": "hg",
-    "url": "ssh://hg@bitbucket.org/ssmr9dt/yankee"
+    "type": "git",
+    "url": "https://github.com/ssmr9dt/yankee.git"
   },
   "author": "Satoshi Murakami <ssmr9dt@gmail.com>",
   "dependencies": {
     "express": "^4.21.2",
-    "socket.io": "^4.8.1",
-    "forever": "^4.0.3"
+    "forever": "^4.0.3",
+    "jquery": "^3.7.1",
+    "pixi.js": "^2.2.9",
+    "socket.io": "^4.8.1"
   },
   "scripts": {
     "test": "mocha test/**/*.text.js",

@@ -1,16 +1,24 @@
-var http = require("http");
-var path = require("path");
+let http = require("http");
+let path = require("path");
 
-var express = require("express");
+let express = require("express");
 
-var router = express();
-var server = http.createServer(router);
-var io = require("socket.io")(server);
+let router = express();
+let server = http.createServer(router);
+let io = require("socket.io")(server);
 
-router.use(express.static(path.resolve(__dirname,"client")));
+router.use(express.static(path.resolve(__dirname, "client")));
+router.use(
+    "/vendor/jquery",
+    express.static(path.join(__dirname, "node_modules/jquery/dist"))
+);
+router.use(
+    "/vendor/pixi",
+    express.static(path.join(__dirname, "node_modules/pixi.js/bin"))
+);
 
 server.listen(process.env.PORT || 37324, process.env.IP || "0.0.0.0", function(){
-    var addr = server.address();
+    let addr = server.address();
     console.log("server listen:", addr.address, ":", addr.port);
 });
 
