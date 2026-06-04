@@ -14,7 +14,7 @@ router.use(
 );
 router.use(
     "/vendor/pixi",
-    express.static(path.join(__dirname, "node_modules/pixi.js/bin"))
+    express.static(path.join(__dirname, "node_modules/pixi.js/dist"))
 );
 
 server.listen(process.env.PORT || 37324, process.env.IP || "0.0.0.0", function(){
