@@ -14,8 +14,7 @@ pnpm-debug.log*
 .env.*
 !.env.example
 
-# forever
-.forever/
+# pm2
 pids/
 *.pid
 

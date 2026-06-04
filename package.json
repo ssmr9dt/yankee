@@ -10,13 +10,19 @@
   "author": "Satoshi Murakami <ssmr9dt@gmail.com>",
   "dependencies": {
     "express": "^4.21.2",
-    "forever": "^4.0.3",
     "jquery": "^3.7.1",
     "pixi.js": "^8.18.0",
     "socket.io": "^4.8.1"
   },
+  "devDependencies": {
+    "pm2": "^6.0.8"
+  },
   "scripts": {
     "test": "mocha test/**/*.text.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop ecosystem.config.js",
+    "pm2:restart": "pm2 restart ecosystem.config.js",
+    "pm2:logs": "pm2 logs yankee"
   }
 }
