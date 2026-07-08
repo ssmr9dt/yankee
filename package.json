@@ -15,7 +15,7 @@
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
-    "pm2": "^6.0.8"
+    "pm2": "^7.0.3"
   },
   "scripts": {
     "test": "mocha test/**/*.text.js",
