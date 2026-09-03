@@ -9,7 +9,7 @@
   },
   "author": "Satoshi Murakami <ssmr9dt@gmail.com>",
   "dependencies": {
-    "express": "^4.21.2",
+    "express": "^5.2.1",
     "jquery": "^3.7.1",
     "pixi.js": "^8.18.0",
     "socket.io": "^4.8.1"
